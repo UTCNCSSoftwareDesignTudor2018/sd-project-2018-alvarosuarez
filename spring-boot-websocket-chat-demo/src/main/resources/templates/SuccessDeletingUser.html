@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+      <link rel="stylesheet" type="text/css" href="css/info.css"/>
+    
+</head>
+<body>
+	<h1>Successfully Deleted User: "<span th:text="${alias}" style="color:blue;font-weight:bold;size:20"></span>"! <br></h1>
+	<form  method="post" action="#" th:action="@{/outSuccessDelete}">
+			<button type="submit" value="log out" class="btn btn-primary btn-block btn-large">Back</button>
+	</form>
+</body>
+</html>

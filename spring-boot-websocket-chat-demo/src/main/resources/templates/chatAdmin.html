@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+      <title>Chat</title>
+      <link rel="stylesheet" href="/css/main.css" />
+
+  </head>
+  <body>
+    <noscript>
+      <h2>Sorry! Your browser doesn't support Javascript</h2>
+    </noscript>
+
+    <div id="username-page">
+        <div class="username-page-container">
+            <h1 class="title">Welcome Admin: "<span th:text="${user}" style="color:blue;font-weight:bold;size:20"></span>"</h1>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input id="name" th:value="${user}" type="hidden" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                </div>
+            </form>
+             <h2>Forbidden Words</h2>
+			 <p>Note: This words are not allowed and bad behavior can be reported.</p>
+		     <table id="myTableForbidWords">
+				<tr>
+					<th>words</th>
+				</tr>
+				<tr th:each="forbidWord,iterationStatus  : ${chat.forbidWords}">
+					<td th:text="${forbidWord}"/> 
+		   		</tr>
+			</table>
+			
+			
+			<h2>Add Word Section.</h2>
+           	<form class="login-form" action="#" th:action="@{/addForbidenWord}" method="post">
+	          	<input type="text" name="word" placeholder="word" autocomplete="off" class="form-control"/>
+			 	<button type="submit" class="accent username-submit" value="report" >Add Word</button>
+			</form>
+			
+			<h2>Delete Word.</h2>
+           	<form class="login-form" action="#" th:action="@{/deleteForbidenWord}" method="post">
+	          	<input type="text" name="word" placeholder="word" autocomplete="off" class="form-control"/>
+			 	<button type="submit" class="accent username-submit" value="report" >Delete Word</button>
+			</form>
+			
+            <h2>Users</h2>
+            <table id="myTableUsers">
+				<tr>
+					<th>Number</th>
+					<th>Alias</th>
+					<th>Email</th>
+				</tr>
+				<tr th:each="user,iterationStatus  : ${users}">
+					<td th:text="${iterationStatus.count}">1</td>
+					<td th:text="${user.alias}"/> 
+					<td th:text="${user.email}"/> 
+		   		</tr>
+			</table>
+            
+            <h2>Notify User section.</h2>
+           	<form class="login-form" action="#" th:action="@{/notifyUser}" method="post">
+	          	<input type="text" name="alias" placeholder="User Email..." autocomplete="off" class="form-control"/>
+	          	<input id="comment" type="text" name="comment" placeholder="Comment..." autocomplete="off" class="form-control"/>
+			 	<button type="submit" class="accent username-submit" formaction="/notifyUser" value="report" >Notify</button>
+			</form>
+             
+   			<h2>Delete User Account.</h2>
+   			<form class="login-form" action="#" th:action="@{/deleteUserAdmin}" method="post">
+   			  <input type="text" name="aliasDelete" placeholder="alias" autocomplete="off" class="form-control"/>
+			  <button type="submit" class="accent username-submit" value="report" formaction="/deleteUserAdmin" >Ban Account</button>
+			</form>
+			
+                <br>
+                  
+            <form class="login-form" action="#" th:action="@{/backChat}" method="post">
+			<button type="submit" class="accent username-submit" formaction="/backChat" value="backChat" >Back</button>
+			</form>
+        </div>
+    </div>
+
+    <div id="chat-page" class="hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Welcome to chat:
+                "<span th:text="${chat.chatName}" style="color:blue;font-weight:bold;size:20"></span>" ! </h2>
+            </div>
+		<br/>
+		<br/>
+            <div class="connecting">
+                Connecting...
+            </div>
+            <ul id="messageArea">
+
+            </ul>
+            <form id="messageForm" name="messageForm" nameForm="messageForm">
+                <div class="form-group">
+                    <div class="input-group clearfix">
+                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                        <button type="submit" class="primary">Send</button>
+                    </div>
+                </div>
+            </form>
+            <form class="login-form" action="#" th:action="@{/backAdminChatLogged}" method="post">
+				<button type="submit" class="primary" formaction="/backAdminChatLogged" value="backChat" >Back</button>
+			</form>
+				<br>
+			<form class="login-form" action="#" th:action="@{/logOut}" method="post">
+				<button type="submit" class="primary" formaction="/logOut" value="backChat" >Log Out</button>
+			</form>
+        </div>
+    </div>
+    
+	
+	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

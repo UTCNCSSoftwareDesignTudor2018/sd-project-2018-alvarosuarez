@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>  
+  <link rel="stylesheet" type="text/css" href="css/style.css"/> 
+    
+</head>
+<body>
+	<div class="clientR">
+	<h1> Register</h1><br>
+		<form  method="post" action="#" th:action="@{/addUser}">
+			<p>First Name:</p>
+			<input type="text" name="firstName" placeholder="FirstName" required="required"/><br>
+			<p>Last Name: </p>
+			<input type="text" name="lastName" placeholder="LastName" required="required"/><br>
+			<p>Alias: </p>
+			<input type="text" name="alias" placeholder="Alias" required="required"/><br> 
+			<p>Email/username: </p>
+	        <input type="text" name="email" placeholder="Email" required="required"/><br> 
+	        <p>Password: </p>
+	        <input type="text" name="password" placeholder="Password" required="required"/><br> 
+	        <p>Nif: </p>
+	        <input type="text" name="nif" placeholder="Nif" required="required"/>
+	        <br></br>
+			<button type="submit" value="Register">Register</button>
+		</form>
+		<br><br>
+		<form  method="post" action="#" th:action="@{/outRegister}">
+			<button type="submit" value="log out" >Back</button>
+		</form>
+	</div>
+  </body>
+</html>
