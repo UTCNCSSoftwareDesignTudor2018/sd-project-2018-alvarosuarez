@@ -2,6 +2,7 @@ Alvaro Suarez del Cueto - Active chat monitoring and suspicious chat detection.
 - Design Patterns: 
 - Factory -> in the entityFactory class and it is used in the MainController class.
 - Dependency Injection ->  MainController class used with the @autowired notation from spring.
+- Facade -> testing purposes in class EntityFacade and used in Maincontroller.
 
 - Entity relationships: 
 - One to many relationship between the chat - User classes.
