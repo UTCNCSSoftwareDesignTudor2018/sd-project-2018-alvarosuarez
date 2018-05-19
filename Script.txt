@@ -1,0 +1,8 @@
+INSERT INTO `chat` (`id`, `chat_name`) VALUES ('1', 'chat1');
+INSERT INTO `chat_forbid_words` (`chat_id`, `forbid_words`) VALUES ('1', 'kill');
+INSERT INTO `user` (`id`, `alias`, `email`, `first_name`, `is_admin`, `last_name`, `nationality`, `nif`, `password`, `chat_id`, `number_of_reports`) 
+VALUES ('0', 'a', 'a', 'a', b'0', 'a', 'a', 'a', 'a', '1', '0');
+INSERT INTO `user` (`id`, `alias`, `email`, `first_name`, `is_admin`, `last_name`, `nationality`, `nif`, `password`, `chat_id`, `number_of_reports`) 
+VALUES ('1', 'b', 'b', 'b', b'0', 'b', 'b', 'b', 'b', '1', '0');
+INSERT INTO `user` (`id`, `alias`, `email`, `first_name`, `is_admin`, `last_name`, `nationality`, `nif`, `password`, `chat_id`, `number_of_reports`) 
+VALUES ('2', 'c', 'c', 'c', b'1', 'c', 'c', 'c', 'c', '1', '0');
