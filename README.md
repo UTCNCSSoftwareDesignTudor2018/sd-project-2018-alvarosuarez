@@ -11,4 +11,5 @@ Alvaro Suarez del Cueto - Active chat monitoring and suspicious chat detection.
 - Layer Architecture + Model View Controller + Maven + Spring boot + websockets + javascript + HTML + CSS
 
 - Unit test, input validation:
+- All the data input from the user is validated.
 
