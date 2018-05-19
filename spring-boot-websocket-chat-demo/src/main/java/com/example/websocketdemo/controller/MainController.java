@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.websocketdemo.entities.Chat;
 import com.example.websocketdemo.entities.ChatMessage;
 import com.example.websocketdemo.entities.ChatMessage.MessageType;
+import com.example.websocketdemo.entities.EntityFacade;
+import com.example.websocketdemo.entities.EntityFactory;
 import com.example.websocketdemo.entities.User;
 import com.example.websocketdemo.services.MailService;
 
@@ -26,8 +28,12 @@ public class MainController {
 	private ChatController chatController;
 	MailService mailService = new MailService("varosuarez@gmail.com"
 																				,"!R1badesella");
-	private Chat c;
-	private User loggedUser;
+	private EntityFactory eF = new EntityFactory();
+	
+	private Chat c = (Chat) eF.getEntity("chat");
+	private User loggedUser = (User) eF.getEntity("user");
+	
+	private EntityFacade eFac;
 	
 	@RequestMapping("/")
 	public String landing() {
@@ -39,13 +45,22 @@ public class MainController {
 		String password = request.getParameter("password");
 		loggedUser = userController.getUser(login, password);
 		c = chatController.getChat("chat1");
+		
 		if(loggedUser==null){
 			return "errorLogin";
 		}else if(loggedUser.isAdmin() == false){
+			//test
+			eFac = new EntityFacade(c, loggedUser);
+			System.out.println(eFac.start());
+			
 			model.addAttribute("user", loggedUser.getAlias());
 			model.addAttribute("chat", this.c);
 			return "chat";
 		}else if(loggedUser.isAdmin() == true){
+			//test
+			eFac = new EntityFacade(c, loggedUser);
+			System.out.println(eFac.start());
+			
 			model.addAttribute("users", userController.findAll());
 			model.addAttribute("user", loggedUser.getAlias());
 			model.addAttribute("chat", this.c);
@@ -267,7 +282,7 @@ public class MainController {
     	User u = userController.findByAlias(chatMessage.getSender());
     	if(u.isAdmin()){
     		 headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-    		 chatMessage.setContent("ADMIN: " + u.getAlias() + "JOINED.");
+    		 chatMessage.setContent("ADMIN: [" + u.getAlias() + "] JOINED CHAT.");
     		 chatMessage.setType(MessageType.CHAT);
     		 this.sendMessage(chatMessage);
     	}else{

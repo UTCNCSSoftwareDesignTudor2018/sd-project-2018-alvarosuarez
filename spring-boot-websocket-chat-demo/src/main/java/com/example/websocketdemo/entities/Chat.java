@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Chat {
+public class Chat implements ChatEntity{
 	@Id
 	@GeneratedValue
 	private Long id;
